@@ -1,0 +1,51 @@
+spring:
+  profiles:
+    active: local
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    username: postgres
+    password: postgres
+    url: jdbc:postgresql://localhost:5432/online_library
+
+  jpa:
+    show-sql: true
+    generate-ddl: true
+    hibernate:
+      ddl-auto: none
+    database: postgresql
+    open-in-view: false
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    properties:
+      jakarta:
+        persistence:
+          sharedCache:
+            mode: UNSPECIFIED
+  servlet:
+    multipart:
+      max-file-size: 100MB
+      max-request-size: 100MB
+
+
+server:
+  port: 8080
+
+springdoc:
+  version: 1.0
+  swagger-ui:
+    enabled: true
+
+jwtSecret: ']pOWL^7L:Per$_1.i7a%RT2f567@1!f+]AHGSDhsagf9878sd76f78dsg5787&*^F&*DSG7sdgds6g98sa6g807D^&S*6g*G^*S&G^S*&G^(&*^SG*&SDG^S*DG(S*&GF()SDF*)S(F))_G(_F)SG(SG_)DSF'
+#15 min
+accessTokenExpirationMs: 172800000
+#30 Days
+refreshTokenExpirationMs: 2592000000
+#2 Days
+tempTokenExpirationMs: 172800000
+logging:
+  file:
+    path: /var/log/online-library/
+
+
+
+
+

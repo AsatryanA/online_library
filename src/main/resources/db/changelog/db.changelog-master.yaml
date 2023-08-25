@@ -1,0 +1,120 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: Arsen
+      changes:
+        - sqlFile:
+            path: classpath:/db/changelog/V1__initialization.sql
+
+
+  - changeSet:
+      id: 2
+      author: Arsen
+      changes:
+        - loadData:
+            tableName: roles
+            file: /db/changelog/data/roles-data.csv
+
+
+
+  - changeSet:
+      id: 3
+      author: Arsen
+      order: 1
+      changes:
+        - loadData:
+            tableName: authors
+            file: /db/changelog/data/author-data.csv
+
+  - changeSet:
+      id: adjustSequenceAuthor
+      author: Arsen
+      order: 2
+      changes:
+        - sql:
+            sql: "SELECT setval('authors_id_seq', (SELECT MAX(id) FROM authors));"
+
+  - changeSet:
+      id: 4
+      author: Arsen
+      order: 3
+      changes:
+        - loadData:
+            tableName: genres
+            file: /db/changelog/data/genre-data.csv
+
+  - changeSet:
+      id: adjustSequenceGenre
+      author: Arsen
+      order: 4
+      changes:
+        - sql:
+            sql: "SELECT setval('genres_id_seq', (SELECT MAX(id) FROM genres));"
+
+  - changeSet:
+      id: 5
+      author: Arsen
+      order: 5
+      changes:
+        - loadData:
+            tableName: books
+            file: /db/changelog/data/book-data.csv
+
+  - changeSet:
+      id: adjustSequenceBook
+      author: Arsen
+      order: 6
+      changes:
+        - sql:
+            sql: "SELECT setval('books_id_seq', (SELECT MAX(id) FROM books));"
+
+  - changeSet:
+      id: 6
+      author: Arsen
+      order: 7
+      changes:
+        - loadData:
+            tableName: users
+            file: /db/changelog/data/user-data.csv
+
+  - changeSet:
+      id: adjustSequenceUser
+      author: Arsen
+      order: 8
+      changes:
+        - sql:
+            sql: "SELECT setval('users_id_seq', (SELECT MAX(id) FROM users));"
+
+  - changeSet:
+      id: 7
+      author: Arsen
+      order: 9
+      changes:
+        - loadData:
+            tableName: cards
+            file: /db/changelog/data/card-data.csv
+
+
+  - changeSet:
+      id: adjustSequenceCard
+      author: Arsen
+      order: 10
+      changes:
+        - sql:
+            sql: "SELECT setval('cards_id_seq', (SELECT MAX(id) FROM cards));"
+
+  - changeSet:
+      id: 8
+      author: Arsen
+      changes:
+        - loadData:
+            tableName: authors_users
+            file: /db/changelog/data/authors-users-data.csv
+
+  - changeSet:
+      id: 9
+      author: Arsen
+      changes:
+        - loadData:
+            tableName: genres_users
+            file: /db/changelog/data/genres-users-data.csv
